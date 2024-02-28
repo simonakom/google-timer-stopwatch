@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+    border-bottom: 2px solid #4285f4;
+    color: #4285f4;
+}
+.timer-header button {
+    width: 250px;
+    padding: 15px;
+}
+.timer-actions {
+    background-color: #1b73e8;
+    color: white;
+    font-weight:600;
+    padding: 6px 20px;
+    margin-left: 20px;
+    border-radius: 2px;
+    width: 80px; 
+    border: none;
+}
+.resetButton {    
+    border: 1px #dadce0 solid;
+    color: #4285f4;
+    font-weight:600;
+    padding: 6px 20px;
+    margin-left: 20px;
+    border-radius: 2px;
+    width: 80px;  
+}
+
+.timer-actions:hover {
+    background-color: #1f5daf;
+}
+.timer-actions:focus {
+    background-color: #1f5daf;
+}
+
+.resetButton:hover{
+    background-color: #f1f3f6;
+    border: 1px #f1f3f6 solid; 
+}
+.resetButton:focus{
+    background-color: #e7edf7;
+    border: 1px #e7edf7 solid; 
+}
+
+
+
