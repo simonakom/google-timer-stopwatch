@@ -11,8 +11,6 @@ export default function TimerBody({ activeTab }) {
     const [inputHours, setInputHours] = useState('');
     const [inputMinutes, setInputMinutes] = useState('');
     const [inputSeconds, setInputSeconds] = useState('');
-    // eslint-disable-next-line no-unused-vars
-    const [timerStarted, setTimerStarted] = useState(false); 
 
     useEffect(() => {
         let interval;
@@ -26,6 +24,17 @@ export default function TimerBody({ activeTab }) {
         return () => clearInterval(interval);
     }, [running, time]);
 
+    const startTimer = () => {
+        const hoursInSeconds = parseInt(inputHours || 0) * 3600;
+        const minutesInSeconds = parseInt(inputMinutes || 0) * 60;
+        const seconds = parseInt(inputSeconds || 0);
+        const totalTime = (hoursInSeconds + minutesInSeconds + seconds) * 1000;
+        const actualTime = totalTime > 0 ? totalTime : initialTime; // Consider initial time if no input is provided
+        setRunning(true); // Set running state first
+        setTime(actualTime); // Then set the time
+        setEditMode(false);
+    };
+
     const handleStop = () => {
         setRunning(false);
     };
@@ -33,36 +42,25 @@ export default function TimerBody({ activeTab }) {
     const handleReset = () => {
         setTime(initialTime); // Reset timer to  5 min
         setRunning(false);
-        setTimerStarted(false); 
+        setEditMode(false);
     };
+
 
     const handleTimeClick = () => {
         setEditMode(true);
     };
-
     const handleInputKeyPress = (e) => {
         if (e.key === 'Enter') {
-            if (inputHours !== '' && inputMinutes !== '' && inputSeconds !== '') {
+            if (inputHours !== '' || inputMinutes !== '' || inputSeconds !== '') {
                 startTimer();
             } else {
-                console.log("Please fill all input fields before starting the timer.");
+                console.log("Please fill at least one input field before starting the timer.");
             }
         }
     };
-
-    const startTimer = () => { // start the timer with the custom time provided
-        const hoursInSeconds = parseInt(inputHours) * 3600;
-        const minutesInSeconds = parseInt(inputMinutes) * 60;
-        const seconds = parseInt(inputSeconds);
-        const totalTime = (hoursInSeconds + minutesInSeconds + seconds) * 1000;
-        setTime(totalTime);
-        setRunning(true); // Start the timer when editing time
-        setTimerStarted(true); // Indicate timer has started
-        setEditMode(false);
-    };
-
     const handleInputClick = () => {
-        setRunning(false); // Stop the timer and change button to "START" when any input field is focused
+        setEditMode(true); 
+        setRunning(false); 
     };
 
     const progressPercentage = ((initialTime - time) / initialTime) * 100;
@@ -82,7 +80,7 @@ export default function TimerBody({ activeTab }) {
                         }}
                         placeholder="00h"
                         onClick={handleInputClick}
-                        onKeyPress={handleInputKeyPress}
+                        onKeyDown={handleInputKeyPress}
                         className='placeholder-[#dadce0]  max-w-[130px] text-[4rem] outline-none'
                     />
                     <input
@@ -96,7 +94,7 @@ export default function TimerBody({ activeTab }) {
                         }}
                         placeholder="00m"
                         onClick={handleInputClick}
-                        onKeyPress={handleInputKeyPress}
+                        onKeyDown={handleInputKeyPress}
                         className='placeholder-[#dadce0] max-w-[130px] text-[4rem] outline-none'
                     />
                     <input
@@ -110,7 +108,7 @@ export default function TimerBody({ activeTab }) {
                         }}
                         placeholder="00s"
                         onClick={handleInputClick}
-                        onKeyPress={handleInputKeyPress}
+                        onKeyDown={handleInputKeyPress}
                         className='placeholder-[#dadce0] max-w-[130px] text-[4rem] outline-none'
                     />
                 </div>
@@ -131,7 +129,7 @@ export default function TimerBody({ activeTab }) {
             )}
             <TimerActions
                 running={running}
-                onStart={() => setRunning(true)}
+                onStart={startTimer} 
                 onStop={handleStop}
                 onReset={handleReset}
             />
