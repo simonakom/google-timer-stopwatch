@@ -54,7 +54,7 @@ export default function TimerBody({ activeTab }) {
             if (inputHours !== '' || inputMinutes !== '' || inputSeconds !== '') {
                 startTimer();
             } else {
-                console.log("Please fill at least one input field before starting the timer.");
+                alert("Please fill at least one input field before starting the timer");
             }
         }
     };
@@ -114,18 +114,26 @@ export default function TimerBody({ activeTab }) {
                 </div>
             ) : (
                 <div className="timer-display py-8 px-7 cursor-pointer relative" onClick={handleTimeClick}>
-                    <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
-                    {Math.floor((time / (1000 * 60 * 60))) > 0 && (
-                        <>
-                            <span style={{ fontSize: '4rem' }}>{Math.floor((time / (1000 * 60 * 60)))}</span>
-                            <span style={{ fontSize: '40px' }}>h </span>
-                        </>
-                    )}
-                    <span style={{ fontSize: '4rem' }}>{("0" + Math.floor((time / (1000 * 60)) % 60)).slice(-2)}</span>
-                    <span style={{ fontSize: '40px' }}>m </span>
-                    <span style={{ fontSize: '4rem' }}> {("0" + Math.floor((time / 1000) % 60)).slice(-2)}</span>
-                    <span style={{ fontSize: '40px' }}>s </span>
-                </div>
+                <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
+                {Math.floor((time / (1000 * 60 * 60))) > 0 && (
+                    <>
+                        <span style={{ fontSize: '4rem' }}>{Math.floor((time / (1000 * 60 * 60)))}</span>
+                        <span style={{ fontSize: '40px' }}>h </span>
+                    </>
+                )}
+                {Math.floor((time / (1000 * 60))) >= 10 ? (
+                    <span style={{ fontSize: '4rem' }}>
+                        {Math.floor((time / (1000 * 60)))}
+                    </span>
+                ) : (
+                    <span style={{ fontSize: '4rem' }}>
+                        {("0" + Math.floor((time / (1000 * 60)))).slice(-1)}
+                    </span>
+                )}
+                <span style={{ fontSize: '40px' }}>m </span>
+                <span style={{ fontSize: '4rem' }}> {("0" + Math.floor((time / 1000) % 60)).slice(-2)}</span>
+                <span style={{ fontSize: '40px' }}>s </span>
+            </div>
             )}
             <TimerActions
                 running={running}
