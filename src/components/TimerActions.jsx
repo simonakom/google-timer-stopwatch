@@ -1,4 +1,5 @@
 import { MdFullscreen } from "react-icons/md";
+import * as PropTypes from "prop-types";
 
 export default function TimerActions({ running, onStart, onStop, onReset }) {
     return (
@@ -11,3 +12,11 @@ export default function TimerActions({ running, onStart, onStop, onReset }) {
         </div>
     );
 }
+
+TimerActions.propTypes = {
+    running: PropTypes.bool,
+    onStart: PropTypes.func,
+    onStop: PropTypes.func,
+    onReset: PropTypes.func,
+    editMode: PropTypes.bool,
+};

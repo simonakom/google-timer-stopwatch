@@ -7,7 +7,7 @@
     color: #4285f4;
 }
 .timer-header button {
-    width: 250px;
+    width: 324px;
     padding: 15px;
 }
 .timer-actions {
@@ -29,14 +29,12 @@
     border-radius: 2px;
     width: 80px;  
 }
-
 .timer-actions:hover {
     background-color: #1f5daf;
 }
 .timer-actions:focus {
     background-color: #1f5daf;
 }
-
 .resetButton:hover{
     background-color: #f1f3f6;
     border: 1px #f1f3f6 solid; 
@@ -45,6 +43,12 @@
     background-color: #e7edf7;
     border: 1px #e7edf7 solid; 
 }
-
+.progress-bar {
+    height: 3px;
+    background-color: #4285f4; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 
 

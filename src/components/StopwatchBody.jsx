@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import TimerActions from './TimerActions';
+import * as PropTypes from "prop-types";
 
 export default function StopwatchBody({ activeTab }) {
     const [time, setTime] = useState (0)
@@ -45,14 +46,14 @@ export default function StopwatchBody({ activeTab }) {
 
       return (
         <div className={activeTab === 'stopwatch' ? 'visible' : 'hidden'}>
-            <div className="stopwatch-display py-8 px-7 cursor-pointer" onClick={handleTimeClick}>
+            <div className="stopwatch-display mt-9 mb-7 mx-5 px-3 cursor-pointer" onClick={handleTimeClick}>
                 {minutes > 0 && (
                     <>
                         <span style={{ fontSize: '4rem' }}>{minutes}</span>
                         <span style={{ fontSize: '40px' }}>m </span>
                     </>
                 )}
-                <span style={{ fontSize: '4em' }}>{seconds}</span>
+                <span style={{ fontSize: '4rem' }}>{seconds}</span>
                 <span style={{ fontSize: '40px' }}>s </span>
                 <span style={{ fontSize: '3rem' }}>{milliseconds}</span>
             </div>
@@ -60,3 +61,7 @@ export default function StopwatchBody({ activeTab }) {
         </div>
     );
 }
+
+StopwatchBody.propTypes = {
+  activeTab: PropTypes.string, 
+};

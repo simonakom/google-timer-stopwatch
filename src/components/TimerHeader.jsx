@@ -1,4 +1,5 @@
 import { IoMdHourglass, IoMdStopwatch } from "react-icons/io";
+import * as PropTypes from "prop-types";
 
 export default function TimerHeader({ activeTab, setActiveTab }) {
 
@@ -19,3 +20,7 @@ export default function TimerHeader({ activeTab, setActiveTab }) {
         </div>
     );
 }
+TimerHeader.propTypes = {
+    activeTab: PropTypes.string, 
+    setActiveTab: PropTypes.func,
+  };
