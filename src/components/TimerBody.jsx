@@ -12,14 +12,16 @@ export default function TimerBody({ activeTab }) {
     const [inputMinutes, setInputMinutes] = useState('');
     const [inputSeconds, setInputSeconds] = useState('');
 
+    const [pausedTime, setPausedTime] = useState(null); 
+
     useEffect(() => {
         let interval;
         if (running && time > 0) {
-          interval = setInterval(() => {
-            setTime(prevTime => prevTime - 1000);
-          }, 1000);
+            interval = setInterval(() => {
+                setTime(prevTime => prevTime - 1000);
+            }, 1000);
         } else if (!running || time <= 0) {
-          clearInterval(interval);
+            clearInterval(interval);
         }
         return () => clearInterval(interval);
     }, [running, time]);
@@ -30,21 +32,35 @@ export default function TimerBody({ activeTab }) {
         const seconds = parseInt(inputSeconds || 0);
         const totalTime = (hoursInSeconds + minutesInSeconds + seconds) * 1000;
         const actualTime = totalTime > 0 ? totalTime : initialTime; // Consider initial time if no input is provided
+
+        if (pausedTime !== null) {
+            setTime(pausedTime);
+            setPausedTime(null);
+        } else {
+            setTime(actualTime);
+        }
         setRunning(true); // Set running state first
-        setTime(actualTime); // Then set the time
         setEditMode(false);
     };
+
 
     const handleStop = () => {
         setRunning(false);
+        setPausedTime(time); 
     };
 
+
     const handleReset = () => {
-        setTime(initialTime); // Reset timer to  5 min
+        const hoursInSeconds = parseInt(inputHours || 0) * 3600;
+        const minutesInSeconds = parseInt(inputMinutes || 0) * 60;
+        const seconds = parseInt(inputSeconds || 0);
+        const totalTime = (hoursInSeconds + minutesInSeconds + seconds) * 1000;
+        const resetTime = totalTime > 0 ? totalTime : initialTime; // Consider initial time if no input is provided
+    
+        setTime(resetTime);
         setRunning(false);
         setEditMode(false);
     };
-
 
     const handleTimeClick = () => {
         setEditMode(true);
@@ -58,18 +74,23 @@ export default function TimerBody({ activeTab }) {
             }
         }
     };
+
     const handleInputClick = () => {
         setEditMode(true); 
         setRunning(false); 
     };
 
+    const hours = Math.floor(time / (1000 * 60 * 60));
+    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
     const progressPercentage = ((initialTime - time) / initialTime) * 100;
 
-    return (
+  return (
         <div className={activeTab === 'timer' ? 'visible' : 'hidden'}>
             {editMode ? (
-                <div className='flex mt-10 mb-9 mx-5 px-3 cursor-pointer border-b-2 border-[#4285f4] w-[400px] font-normal'>
-                    <input
+                <div className='flex mt-10 mb-9 mx-5 px-3 cursor-pointer border-b-2 border-[#4285f4] w-[400px] max-h-[85px]  font-normal'>
+                     <input
                         type="text"
                         value={inputHours}
                         onChange={(e) => {
@@ -81,7 +102,7 @@ export default function TimerBody({ activeTab }) {
                         placeholder="00h"
                         onClick={handleInputClick}
                         onKeyDown={handleInputKeyPress}
-                        className='placeholder-[#dadce0]  max-w-[130px] text-[4rem] outline-none'
+                        className='placeholder-[#dadce0] max-w-[130px] text-[4rem] outline-none'
                     />
                     <input
                         type="text"
@@ -95,7 +116,7 @@ export default function TimerBody({ activeTab }) {
                         placeholder="00m"
                         onClick={handleInputClick}
                         onKeyDown={handleInputKeyPress}
-                        className='placeholder-[#dadce0] max-w-[130px] text-[4rem] outline-none'
+                        className='placeholder-[#dadce0] max-w-[150px] text-[4rem] outline-none'
                     />
                     <input
                         type="text"
@@ -115,24 +136,16 @@ export default function TimerBody({ activeTab }) {
             ) : (
                 <div className="timer-display py-8 px-7 cursor-pointer relative" onClick={handleTimeClick}>
                 <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
-                {Math.floor((time / (1000 * 60 * 60))) > 0 && (
-                    <>
-                        <span style={{ fontSize: '4rem' }}>{Math.floor((time / (1000 * 60 * 60)))}</span>
+                    {hours > 0 && (
+                        <>
+                        <span style={{ fontSize: '4rem' }}>{hours}</span>
                         <span style={{ fontSize: '40px' }}>h </span>
-                    </>
-                )}
-                {Math.floor((time / (1000 * 60))) >= 10 ? (
-                    <span style={{ fontSize: '4rem' }}>
-                        {Math.floor((time / (1000 * 60)))}
-                    </span>
-                ) : (
-                    <span style={{ fontSize: '4rem' }}>
-                        {("0" + Math.floor((time / (1000 * 60)))).slice(-1)}
-                    </span>
-                )}
-                <span style={{ fontSize: '40px' }}>m </span>
-                <span style={{ fontSize: '4rem' }}> {("0" + Math.floor((time / 1000) % 60)).slice(-2)}</span>
-                <span style={{ fontSize: '40px' }}>s </span>
+                        </>
+                    )}  
+                    <span style={{ fontSize: '4rem' }}>{minutes}</span>
+                    <span style={{ fontSize: '40px' }}>m </span>
+                    <span style={{ fontSize: '4rem' }}> {("0" + seconds).slice(-2)}</span>
+                    <span style={{ fontSize: '40px' }}>s </span>
             </div>
             )}
             <TimerActions
@@ -144,6 +157,7 @@ export default function TimerBody({ activeTab }) {
         </div>
     );
 }
+
 
 TimerBody.propTypes = {
     activeTab: PropTypes.string, 

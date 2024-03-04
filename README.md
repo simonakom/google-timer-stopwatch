@@ -9,7 +9,7 @@
 
 ## Welcome!
 
-This is a Timer & Stopwatcha app - created using React Vite and Tailwind.
+This is a responsive Timer & Stopwatcha app - created using React Vite and Tailwind.
 
 🔹 Preview -  <a href="https://simonakom.github.io/google-timer-stopwatch/dist/index.html" style="font-size:small;">View</a><h4>
  
