@@ -3,7 +3,7 @@ import TimerActions from './TimerActions';
 import * as PropTypes from "prop-types";
 
 export default function StopwatchBody({ activeTab }) {
-    const [time, setTime] = useState (0)
+    const [time, setTime] = useState (0) //current time
     const [running, setRunning] = useState (false)
 
     useEffect(() => {
@@ -22,11 +22,6 @@ export default function StopwatchBody({ activeTab }) {
       let seconds = Math.floor((time / 1000) % 60);
       let milliseconds = ("0" + ((time / 10) % 100)).slice(-2);
 
-    // Add leading zero if seconds < 10 and there are minutes
-    if (seconds < 10 && minutes > 0) {
-        seconds = "0" + seconds;
-    }
-
     const handleStart = () => {
         setRunning(true);
     };
@@ -40,7 +35,7 @@ export default function StopwatchBody({ activeTab }) {
         setRunning(false);
       };
 
-    const handleTimeClick = () => {
+    const handleTimeClick = () => { //stop click on display
         setRunning(!running); 
     };
 

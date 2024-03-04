@@ -31,31 +31,29 @@ export default function TimerBody({ activeTab }) {
         const minutesInSeconds = parseInt(inputMinutes || 0) * 60;
         const seconds = parseInt(inputSeconds || 0);
         const totalTime = (hoursInSeconds + minutesInSeconds + seconds) * 1000;
-        const actualTime = totalTime > 0 ? totalTime : initialTime; // Consider initial time if no input is provided
-
+        const actualTime = totalTime > 0 ? totalTime : initialTime; // initial time if no input is provided
+    
         if (pausedTime !== null) {
-            setTime(pausedTime);
-            setPausedTime(null);
+            setPausedTime(actualTime); 
+            setTime(actualTime);
         } else {
             setTime(actualTime);
         }
-        setRunning(true); // Set running state first
+        setRunning(true);
         setEditMode(false);
     };
-
-
+    
     const handleStop = () => {
         setRunning(false);
         setPausedTime(time); 
     };
-
 
     const handleReset = () => {
         const hoursInSeconds = parseInt(inputHours || 0) * 3600;
         const minutesInSeconds = parseInt(inputMinutes || 0) * 60;
         const seconds = parseInt(inputSeconds || 0);
         const totalTime = (hoursInSeconds + minutesInSeconds + seconds) * 1000;
-        const resetTime = totalTime > 0 ? totalTime : initialTime; // Consider initial time if no input is provided
+        const resetTime = totalTime > 0 ? totalTime : initialTime; 
     
         setTime(resetTime);
         setRunning(false);
@@ -64,6 +62,10 @@ export default function TimerBody({ activeTab }) {
 
     const handleTimeClick = () => {
         setEditMode(true);
+    };
+    const handleInputClick = () => {
+        setEditMode(true); 
+        setRunning(false); 
     };
     const handleInputKeyPress = (e) => {
         if (e.key === 'Enter') {
@@ -75,11 +77,6 @@ export default function TimerBody({ activeTab }) {
         }
     };
 
-    const handleInputClick = () => {
-        setEditMode(true); 
-        setRunning(false); 
-    };
-
     const hours = Math.floor(time / (1000 * 60 * 60));
     const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((time % (1000 * 60)) / 1000);
@@ -89,13 +86,13 @@ export default function TimerBody({ activeTab }) {
   return (
         <div className={activeTab === 'timer' ? 'visible' : 'hidden'}>
             {editMode ? (
-                <div className='flex mt-10 mb-9 mx-5 px-3 cursor-pointer border-b-2 border-[#4285f4] w-[400px] max-h-[85px]  font-normal'>
+                <div className='flex mt-10 mb-9 mx-5 px-3 cursor-pointer border-b-2 border-[#4285f4] w-[400px] max-h-[85px] font-normal'>
                      <input
                         type="text"
                         value={inputHours}
                         onChange={(e) => {
                             const value = e.target.value;
-                            if (/^\d*$/.test(value) || value === '') {
+                            if (/^\d{0,2}$/.test(value) || value === '') {
                                 setInputHours(value);
                             }
                         }}
@@ -109,21 +106,21 @@ export default function TimerBody({ activeTab }) {
                         value={inputMinutes}
                         onChange={(e) => {
                             const value = e.target.value;
-                            if (/^\d*$/.test(value) || value === '') {
+                            if (/^\d{0,2}$/.test(value) || value === '') {
                                 setInputMinutes(value);
                             }
                         }}
                         placeholder="00m"
                         onClick={handleInputClick}
                         onKeyDown={handleInputKeyPress}
-                        className='placeholder-[#dadce0] max-w-[150px] text-[4rem] outline-none'
+                        className='placeholder-[#dadce0] max-w-[140px] text-[4rem] outline-none'
                     />
                     <input
                         type="text"
                         value={inputSeconds}
                         onChange={(e) => {
                             const value = e.target.value;
-                            if (/^\d*$/.test(value) || value === '') {
+                            if (/^\d{0,2}$/.test(value) || value === '') {
                                 setInputSeconds(value);
                             }
                         }}
@@ -157,7 +154,6 @@ export default function TimerBody({ activeTab }) {
         </div>
     );
 }
-
 
 TimerBody.propTypes = {
     activeTab: PropTypes.string, 
