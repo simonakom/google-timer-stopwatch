@@ -26,6 +26,7 @@ export default function TimerBody({ activeTab }) {
         return () => clearInterval(interval);
     }, [running, time]);
 
+
     const startTimer = () => {
         const hoursInSeconds = parseInt(inputHours || 0) * 3600;
         const minutesInSeconds = parseInt(inputMinutes || 0) * 60;
@@ -33,10 +34,11 @@ export default function TimerBody({ activeTab }) {
         const totalTime = (hoursInSeconds + minutesInSeconds + seconds) * 1000;
         const actualTime = totalTime > 0 ? totalTime : initialTime; 
     
-        const startTime = pausedTime !== null ? pausedTime : actualTime;
+        let startTime = actualTime;
     
-        if (pausedTime !== null && (inputHours || inputMinutes || inputSeconds)) {
-            setPausedTime(startTime);
+        if (pausedTime !== null) {
+            startTime = pausedTime;
+            setPausedTime(null); 
         }
     
         setTime(startTime);
