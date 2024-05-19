@@ -1,16 +1,16 @@
 # <span><img src="./public/google.png" alt="note" style="height: 1em;"></span> Google Timer & Stopwatch
 
-<div align="center">
-  <img src="https://img.shields.io/badge/📖%20license-%20MIT-a964d0.svg" alt="48 items"/> 
-  <img id="last-update-badge" src="https://img.shields.io/badge/%F0%9F%93%85%20Last%20update%20-%20March%2003%2C%202024-267a60.svg" alt="Last update: February 15, 2024" /> 
-  <img src="https://img.shields.io/badge/%E2%9C%94%20Updated%20For%20Version%20-%20Node%2020.10.0-187e25.svg" alt="Updated for Node 20.10.0"/>
+<div>
+  <img src="https://img.shields.io/badge/📖%20license-%20MIT-a964d0.svg" alt="license"/> 
+  <img id="last-update-badge" src="https://img.shields.io/badge/%F0%9F%93%85%20Last%20update%20-%20March%2003%2C%202024-267a60.svg" alt="update" /> 
+  <img src="https://img.shields.io/badge/%E2%9C%94%20Updated%20For%20Version%20-%20Node%2020.10.0-187e25.svg" alt="Node"/>
 </div>
 
 ## Welcome!
 
 This is a responsive Timer & Stopwatcha app - created using React Vite and Tailwind.
 
-🔹 Preview -  <a href="https://simonakom.github.io/google-timer-stopwatch/dist/index.html" style="font-size:small;">View</a><h4>
+🔹 Preview -  <a href="https://simonakom.github.io/google-timer-stopwatch/dist/index.html">View</a><h4>
  
 
 ## Getting Started
@@ -43,8 +43,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Hope you find this project interesting and useful!
 
 <div>
-<img src="./public/REC-20240519215528.gif" alt="video" style="height: 20rem;">
-
+<video controls autoplay loop muted src="/public/REC-20240519215528.gif" alt="video" style="height: 20rem;"></video>
 </div>
 
 
