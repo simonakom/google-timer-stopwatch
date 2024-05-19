@@ -43,7 +43,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Hope you find this project interesting and useful!
 
 <div>
-<img src="./public/REC-20240519215528.mp4" alt="note" style="height: 20rem;">
+<img src="./public/REC-20240519215528.gif" alt="video" style="height: 20rem;">
 
 </div>
 
