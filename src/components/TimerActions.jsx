@@ -8,7 +8,7 @@ export default function TimerActions({ running, onStart, onStop, onReset, toggle
                 <button className="timer-actions" onClick={running ? onStop : onStart}>{running ? 'STOP' : 'START'}</button>
                 <button className="resetButton" onClick={onReset}>RESET</button>
             </div>
-            <MdFullscreen className="text-2xl mr-5 text-[#868686] cursor-pointer" onClick={toggleZoom} />
+            <MdFullscreen className="text-2xl mr-5 text-[#868686] cursor-pointer fullscreen-icon" onClick={toggleZoom} />
         </div>
     );
 }
