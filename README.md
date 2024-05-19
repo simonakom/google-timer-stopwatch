@@ -42,7 +42,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Hope you find this project interesting and useful!
 
-![Animated GIF](./public/REC-20240519215528.gif)
+<div><img src="./public/timer.png" alt="timer"></div>
 
 
 
