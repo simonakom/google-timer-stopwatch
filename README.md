@@ -1,5 +1,4 @@
-
-#  Google Timer & Stopwatch
+# <span><img src="./public/google.png" alt="note" style="height: 1em;"></span> Google Timer & Stopwatch
 
 <div align="center">
   <img src="https://img.shields.io/badge/📖%20license-%20MIT-a964d0.svg" alt="48 items"/> 
@@ -44,7 +43,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Hope you find this project interesting and useful!
 
 <div>
-  <img src="./public/look.png" alt="gif" style="width: 100px" />
+<img src="./public/gif.gif" alt="note" style="height: 100%;">
+
 </div>
 
 
