@@ -43,7 +43,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Hope you find this project interesting and useful!
 
 <div>
-<img src="./public/gif.gif" alt="note" style="height: 100rem;">
+<img src="./public/gif.gif" alt="note" style="height: 20rem;">
 
 </div>
 
