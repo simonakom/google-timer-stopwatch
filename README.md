@@ -44,7 +44,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Hope you find this project interesting and useful!
 
 <div>
-  <img src="./public/gif.gif" alt="gif" />
+  <img src="./public/look.png" alt="gif" style="width: 100px" />
 </div>
 
 
