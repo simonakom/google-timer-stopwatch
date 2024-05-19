@@ -43,6 +43,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Hope you find this project interesting and useful!
 
+<div>![Page GIF](./public/gif.gif)</div>
+
+
 
 
 
