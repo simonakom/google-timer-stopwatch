@@ -1,4 +1,4 @@
-# <span><img src="./public/google.png" alt="note" style="height: 1em;"></span> Google Timer & Stopwatch
+# <span><img src="./public/google.png" alt="google-timer" style="height: 1em;"></span> Google Timer & Stopwatch
 
 <div>
   <img src="https://img.shields.io/badge/📖%20license-%20MIT-a964d0.svg" alt="license"/> 
